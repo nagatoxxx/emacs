@@ -21,7 +21,6 @@
   ; popper
   "p"  '(:ignore t :which-key "popper")
   "pt" '(popper-toggle :which-key "toggle popup")
-  "pc" '(popper-cycle :which-key "cycle popup")
 
   ; git
   "g"  '(:ignore t :which-key "git")
@@ -33,9 +32,11 @@
   "lr"  '(lsp-rename :which-key "rename symbol")
   "lf"  '(:ignore t :which-key "find")
   "lfd" '(lsp-find-definition :which-key "symbol definition")
-  "lfr" '(lsp-find-references :which-key "symbol references")
+  ; "lfr" '(lsp-find-references :which-key "symbol references")
+  "lfr" '(lsp-ui-peek-find-references :which-key "symbol references")
+  "ld"  '(lsp-describe-thing-at-point :which-key "describe")
 
-  ; diag
+  ; diagnostics
   "d"  '(:ignore t :which-key "diagnostics")
   "dl" '(flycheck-list-errors :which-key "list errors")
   "dn" '(flycheck-next-error :which-key "go to next error")
@@ -43,7 +44,7 @@
 
   ; windows
   "|" '(split-window-right :which-key "split window right")
-  "-" '(split-window-right :which-key "split window below")
+  "-" '(split-window-below :which-key "split window below")
   "q" '(delete-window :which-key "kill window")
 
   ; consult
@@ -58,7 +59,6 @@
   "tt" '(treemacs :which-key "toggle files tree")
 
   ; navigation
-  "w" '(evil-avy-goto-word-0 :which-key "go to word")
-  )
+  "w" '(evil-avy-goto-word-0 :which-key "go to word"))
 
 (provide 'keybindings)

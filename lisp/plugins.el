@@ -229,7 +229,17 @@
 
 (use-package consult
   :ensure t
-  :defer t)
+  :defer t
+  :config
+  (setq consult-buffer-filter
+      '("\\` "
+        "\\*Messages\\*"
+        "\\*Warnings\\*"
+        "\\*Compile-Log\\*"
+        "\\*lsp-log\\*"
+        "\\*flycheck\\*"
+        ))
+  )
 
 (use-package orderless
   :ensure t
@@ -317,11 +327,14 @@
     :test    "cabal test"
     :run     "cabal run")
 
-  (setq compilation-read-command nil)
-  )
+  (setq compilation-read-command nil))
 
 (use-package treemacs-projectile
   :ensure t
   :after (treemacs projectile))
+
+(use-package marginalia
+  :ensure t
+  :init (marginalia-mode))
 
 (provide 'plugins)

@@ -1,13 +1,18 @@
 (defun my/context-menu-items (menu click)
-  (define-key menu [open-notes]
+  (define-key menu [toggle-notes]
     (list 'menu-item "Notes" #'my/toggle-notes))
+  (define-key menu [toggle-term]
+    (list 'menu-item "Terminal" #'my/toggle-vterm))
   (define-key menu [separator-my] menu-bar-separator)
   (when (bound-and-true-p lsp-mode)
     (define-key menu [find-def]
       `(menu-item "Find definition" lsp-find-definition
                   :enable (thing-at-point 'symbol)))
     (define-key menu [find-refs]
-      `(menu-item "Find references" lsp-find-references
+      `(menu-item "Find references" lsp-ui-peek-find-references
+                  :enable (thing-at-point 'symbol)))
+    (define-key menu [describe]
+      `(menu-item "Describe" lsp-describe-thing-at-point
                   :enable (thing-at-point 'symbol))))
   menu)
 
