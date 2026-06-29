@@ -105,4 +105,19 @@
   (diff-hl-flydiff-mode 1)  ; обновлять fringe без сохранения файла
 )
 
+; быстрый переход по словам
+(use-package avy
+  :ensure t
+  :config
+  (setq avy-background t)
+  (setq avy-all-windows nil))
+
+  (with-eval-after-load 'avy
+  (set-face-attribute 'avy-lead-face nil
+                      :background (face-background 'error)
+                      :foreground (face-foreground 'default)
+                      :bold t)
+  (set-face-attribute 'avy-background-face nil
+                      :foreground (face-foreground 'shadow)))
+
 (provide 'workspace/plugins)

@@ -11,8 +11,7 @@
   )
 
 (use-package modus-themes
-  :ensure t
-  :config)
+  :ensure t)
 
 ; вкладки как в виме
 (use-package vim-tab-bar

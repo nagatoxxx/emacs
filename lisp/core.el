@@ -19,7 +19,6 @@
 ; ============================ ;
 ;        хуки и режимы         ;
 ; ============================ ;
-(add-hook 'prog-mode-hook #'display-line-numbers-mode) ; нумерация строк 
 (add-hook 'prog-mode-hook #'hs-minor-mode) ; folding
 
 (setenv "PATH" (concat (getenv "HOME") "/.cargo/bin:"

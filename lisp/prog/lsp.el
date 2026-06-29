@@ -6,8 +6,7 @@
   (setq lsp-enable-snippet nil)
   (setq lsp-idle-delay 0.1)
   (setq read-process-output-max (* 1024 1024))
-  (setq lsp-prefer-capf t)
-  (setq lsp-client-packages '(lsp-clangd lsp-lisp lsp-qml lsp-cmake lsp-haskell))
+(setq lsp-client-packages '(lsp-clangd lsp-lisp lsp-qml lsp-cmake lsp-haskell))
   (setq lsp-inlay-hint-enable t)
   (setq lsp-enable-links nil)
   (setq lsp-diagnostics-provider :flycheck)
@@ -47,5 +46,20 @@
          (haskell-literate-mode . lsp-deferred))
   :config
   (setq lsp-haskell-server-path "haskell-language-server-wrapper"))
+
+(defun my/context-menu-lsp-items (menu click)
+  (when (bound-and-true-p lsp-mode)
+    (define-key menu [find-def]
+      `(menu-item "Find definition" lsp-find-definition
+                  :enable (thing-at-point 'symbol)))
+    (define-key menu [find-refs]
+      `(menu-item "Find references" lsp-ui-peek-find-references
+                  :enable (thing-at-point 'symbol)))
+    (define-key menu [describe]
+      `(menu-item "Describe" lsp-describe-thing-at-point
+                  :enable (thing-at-point 'symbol))))
+  menu)
+
+(setq context-menu-functions '(my/context-menu-lsp-items))
 
 (provide 'prog/lsp)

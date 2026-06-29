@@ -2,5 +2,6 @@
 
 (require 'prog/tools)
 (require 'prog/lsp) ; languages support
+(require 'prog/keybindings)
 
 (provide 'prog)

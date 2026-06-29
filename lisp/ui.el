@@ -3,7 +3,6 @@
 (require 'ui/plugins)
 (require 'ui/appearance)
 (require 'ui/modeline)
-(require 'ui/windows)
 (require 'ui/context-menu)
 
 (provide 'ui)

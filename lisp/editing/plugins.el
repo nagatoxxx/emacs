@@ -1,7 +1,7 @@
 ; vim-like
-(setq evil-want-keybinding nil)
 (use-package evil
   :ensure t
+  :init (setq evil-want-keybinding nil)
   :config
   (evil-mode 1))
 
@@ -20,7 +20,6 @@
 
 (use-package evil-org
   :ensure t
-  :defer t
   :after org
   :hook (org-mode . evil-org-mode)
   :config
@@ -29,6 +28,7 @@
 
 (use-package evil-lion
   :ensure t
+  :after evil
   :config
   (evil-lion-mode))
 
@@ -50,21 +50,6 @@
   (general-create-definer my/leader
     :states '(normal visual)
     :prefix "SPC"))
-
-; быстрый переход по словам
-(use-package avy
-  :ensure t
-  :config
-  (setq avy-background t)
-  (setq avy-all-windows nil))
-
-  (with-eval-after-load 'avy
-  (set-face-attribute 'avy-lead-face nil
-                      :background (face-background 'error)
-                      :foreground (face-foreground 'default)
-                      :bold t)
-  (set-face-attribute 'avy-background-face nil
-                      :foreground (face-foreground 'shadow)))
 
 ; системный буфер обмена
 (use-package xclip
