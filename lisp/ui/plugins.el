@@ -8,6 +8,7 @@
   (catppuccin-set-color 'crust "#111111" 'mocha)
   (catppuccin-set-color 'surface0 "#313131" 'mocha)
   (catppuccin-set-color 'surface1 "#454545" 'mocha)
+
   )
 
 (use-package modus-themes

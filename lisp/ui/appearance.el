@@ -9,7 +9,30 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode 1)
 
-; (load-theme 'catppuccin t)
+(defun ui/appearance--catppuccin ()
+  (catppuccin-reload)
+  (set-face-background 'treemacs-window-background-face
+                       (catppuccin-get-color 'mantle)))
+
+(defun ui/appearance--modus-operandi ())
+
+(defun ui/appearance--modus-catppuccin ())
+
+(defun ui/load-theme (theme)
+  (interactive
+   (list (intern (completing-read "theme: "
+                                  '(catppuccin 
+                                    modus-operandi)))))
+  (mapc #'disable-theme custom-enabled-themes)
+  (load-theme theme :no-confirm)
+  (pcase theme
+    ('catppuccin (ui/appearance--catppuccin))
+    ('modus-operandi (ui/appearance--modus-operandi))))
+
+(my/leader
+  "u"  '(:ignore t :which-key "interface")
+  "ut" '(ui/load-theme :which-key "switch theme"))
+
 (load-theme 'modus-operandi t)
 
 (provide 'ui/appearance)
