@@ -13,6 +13,7 @@
 (setq-default header-line-format nil) ; отключаем хедер
 (setq-default evil-scroll-down-boundary 5)
 (setq-default evil-scroll-up-boundary 5)
+(setq native-comp-async-report-warnings-errors nil)
 (prefer-coding-system 'utf-8) ; кодировка
 
 ; ============================ ;

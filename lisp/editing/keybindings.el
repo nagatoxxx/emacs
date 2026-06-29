@@ -1,7 +1,3 @@
-; ============================ ;
-;          keybindings         ;
-; ============================ ;
-
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "TAB") nil)
   (define-key company-active-map (kbd "<tab>") nil))
@@ -32,8 +28,8 @@
   "lr"  '(lsp-rename :which-key "rename symbol")
   "lf"  '(:ignore t :which-key "find")
   "lfd" '(lsp-find-definition :which-key "symbol definition")
-  ; "lfr" '(lsp-find-references :which-key "symbol references")
-  "lfr" '(lsp-ui-peek-find-references :which-key "symbol references")
+  "lfr" '(lsp-find-references :which-key "symbol references")
+  ; "lfr" '(lsp-ui-peek-find-references :which-key "symbol references")
   "ld"  '(lsp-describe-thing-at-point :which-key "describe")
 
   ; diagnostics
@@ -61,4 +57,4 @@
   ; navigation
   "w" '(evil-avy-goto-word-0 :which-key "go to word"))
 
-(provide 'keybindings)
+(provide 'editing/keybindings)

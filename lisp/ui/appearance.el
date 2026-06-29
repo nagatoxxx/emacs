@@ -9,4 +9,7 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode 1)
 
+; (load-theme 'catppuccin t)
+(load-theme 'modus-operandi t)
+
 (provide 'ui/appearance)
