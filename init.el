@@ -18,9 +18,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("c4df9006b9eb32599d758800a32f3487c2cdf13826084511783b47d419024af2" default))
- '(package-selected-packages
-   '(modus-themes treesit-auto diff-hl treemacs-evil treemacs-nerd-icons treemacs nerd-icons vim-tab-bar format-all lsp-ui company catppuccin-theme lsp-mode flycheck xclip evil-surround evil)))
+   '("c4df9006b9eb32599d758800a32f3487c2cdf13826084511783b47d419024af2"
+     default))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
