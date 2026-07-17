@@ -9,5 +9,5 @@
 (require 'core)
 (require 'editing)
 (require 'ui)
-(require 'prog)
+(require 'lang)
 (require 'workspace)

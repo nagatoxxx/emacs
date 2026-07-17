@@ -6,7 +6,7 @@
   (setq lsp-enable-snippet nil)
   (setq lsp-idle-delay 0.1)
   (setq read-process-output-max (* 1024 1024))
-  (setq lsp-client-packages '(lsp-clangd lsp-lisp lsp-qml lsp-cmake lsp-haskell))
+  (setq lsp-client-packages '(lsp-lisp))
   (setq lsp-inlay-hint-enable t)
   (setq lsp-enable-links nil)
   (setq lsp-diagnostics-provider :flycheck)
@@ -20,33 +20,6 @@
   :config
   (setq lsp-ui-sideline-enable nil)
   (setq lsp-ui-doc-enable nil))            ;; всплывающее окно с описанием
-
-(use-package cc-mode
-  :ensure t
-  :hook ((c-mode   . lsp-deferred)
-         (c++-mode . lsp-deferred))
-  :config
-  (setq-default c-basic-offset 4)
-  (setq-default indent-tabs-mode nil))
-
-(use-package cmake-mode
-    :ensure t
-    :hook (cmake-mode . lsp-deferred))
-
-(use-package qml-mode
-  :ensure t
-  :hook (qml-mode . lsp-deferred))
-
-(use-package haskell-mode
-  :ensure t)
-
-(use-package lsp-haskell
-  :ensure t
-  :demand t
-  :hook ((haskell-mode . lsp-deferred)
-         (haskell-literate-mode . lsp-deferred))
-  :config
-  (setq lsp-haskell-server-path "haskell-language-server-wrapper"))
 
 (defun my/context-menu-lsp-items (menu click)
   (when (bound-and-true-p lsp-mode)
@@ -63,4 +36,51 @@
 
 (setq context-menu-functions '(my/context-menu-lsp-items))
 
-(provide 'prog/lsp)
+(use-package format-all
+  :ensure t
+  :commands format-all-mode
+  :hook (prog-mode . format-all-mode))
+
+(use-package treesit-auto
+  :ensure t
+  :config
+  (global-treesit-auto-mode))
+
+; autocomplete
+(use-package company
+  :ensure t
+  :hook (prog-mode . company-mode)
+  :config
+  (setq company-minimum-prefix-length 1)
+  (setq company-idle-delay 0.0)
+  (setq company-selection-wrap-around t)
+  (setq company-tooltip-align-annotations t)
+  (setq company-backends '(company-capf)))
+
+(use-package flycheck
+  :ensure t
+  :hook (flycheck-error-list-mode . (lambda() (display-line-numbers-mode -1)))
+  :init
+  (global-flycheck-mode)
+
+  (setq flycheck-indication-mode 'right-fringe)
+
+  (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
+  [ #b000000000000
+    #b000000000000
+    #b000000000100
+    #b000000001100
+    #b000000011100
+    #b000000111100
+    #b000001111100
+    #b000011111100
+    #b000011111100
+    #b000001111100
+    #b000000111100
+    #b000000011100
+    #b000000001100
+    #b000000000100
+    #b000000000000
+    #b000000000000 ] nil 12 'center))
+
+(provide 'lang/plugins)

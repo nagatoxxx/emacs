@@ -13,4 +13,4 @@
   "dn" '(flycheck-next-error :which-key "go to next error")
   "dp" '(flycheck-previous-error :which-key "go to prev error"))
 
-(provide 'prog/keybindings)
+(provide 'lang/keybindings)
