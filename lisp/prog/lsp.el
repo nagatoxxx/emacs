@@ -6,7 +6,7 @@
   (setq lsp-enable-snippet nil)
   (setq lsp-idle-delay 0.1)
   (setq read-process-output-max (* 1024 1024))
-(setq lsp-client-packages '(lsp-clangd lsp-lisp lsp-qml lsp-cmake lsp-haskell))
+  (setq lsp-client-packages '(lsp-clangd lsp-lisp lsp-qml lsp-cmake lsp-haskell))
   (setq lsp-inlay-hint-enable t)
   (setq lsp-enable-links nil)
   (setq lsp-diagnostics-provider :flycheck)
@@ -34,7 +34,8 @@
     :hook (cmake-mode . lsp-deferred))
 
 (use-package qml-mode
-  :ensure t)
+  :ensure t
+  :hook (qml-mode . lsp-deferred))
 
 (use-package haskell-mode
   :ensure t)

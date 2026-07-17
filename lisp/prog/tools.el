@@ -28,6 +28,7 @@
   :hook (flycheck-error-list-mode . (lambda() (display-line-numbers-mode -1)))
   :init
   (global-flycheck-mode)
+  
   (setq flycheck-indication-mode 'right-fringe)
 
   (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow

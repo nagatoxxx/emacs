@@ -76,9 +76,7 @@
   (projectile-register-project-type 'haskell '("*.cabal")
     :compile "cabal build"
     :test    "cabal test"
-    :run     "cabal run")
-
-  (setq compilation-read-command nil))
+    :run     "cabal run"))
 
 (use-package treemacs-projectile
   :ensure t
@@ -119,5 +117,9 @@
                       :bold t)
   (set-face-attribute 'avy-background-face nil
                       :foreground (face-foreground 'shadow)))
+
+(use-package envrc
+  :ensure t
+  :hook (after-init . envrc-global-mode))
 
 (provide 'workspace/plugins)
