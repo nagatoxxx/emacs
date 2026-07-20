@@ -18,16 +18,20 @@
 
 (defun ui/appearance--modus-catppuccin ())
 
+(defun ui/appearance--modus-vivendi ())
+
 (defun ui/load-theme (theme)
   (interactive
    (list (intern (completing-read "theme: "
                                   '(catppuccin 
-                                    modus-operandi)))))
+                                    modus-operandi
+                                    modus-vivendi)))))
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme theme :no-confirm)
   (pcase theme
     ('catppuccin (ui/appearance--catppuccin))
-    ('modus-operandi (ui/appearance--modus-operandi))))
+    ('modus-operandi (ui/appearance--modus-operandi))
+    ('modus-vivendi (ui/appearance--modus-vivendi))))
 
 (my/leader
   "u"  '(:ignore t :which-key "interface")

@@ -25,8 +25,8 @@
   "mt" '(my/toggle-vterm :which-key "toggle vterm")
 
   ; popper
-  "p"  '(:ignore t :which-key "popper")
-  "pt" '(popper-toggle :which-key "toggle popup")
+  ; "p"  '(:ignore t :which-key "popper")
+  ; "pt" '(popper-toggle :which-key "toggle popup")
 
   ; windows
   "|" '(split-window-right :which-key "split window right")
