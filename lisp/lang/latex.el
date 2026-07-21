@@ -8,6 +8,10 @@
   :hook ((LaTeX-mode . TeX-PDF-mode)
          (LaTeX-mode . (lambda () (setq TeX-command-default "LatexMk")))
          (LaTeX-mode . (lambda () (setq TeX-engine 'luatex)))
+         (LaTeX-mode . (lambda () (setq electric-indent-inhibit t)))
+         (LaTeX-mode . (lambda () (setq LaTeX-indent-level 4
+                                        LaTeX-item-indent 0
+                                        TeX-brace-indent-level 4)))
          (post-self-insert . my/yas--try-expanding-auto-snippets))
   :config
   (setq TeX-source-correlate-start-server t
