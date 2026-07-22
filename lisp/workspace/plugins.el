@@ -33,6 +33,15 @@
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
   (setq ediff-split-window-function 'split-window-horizontally))
 
+(use-package treemacs-magit
+  :ensure t
+  :after (treemacs magit))
+
+(use-package dape
+  :ensure t
+  :custom
+  (dape-buffer-window-arrangement 'right))
+
 (use-package vterm 
   :ensure t
   :hook ((vterm-mode . (lambda() (display-line-numbers-mode -1)))))

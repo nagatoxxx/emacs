@@ -41,10 +41,24 @@
   :commands format-all-mode
   :hook (prog-mode . format-all-mode))
 
+(use-package highlight-indent-guides
+  :ensure t
+  :hook (prog-mode . highlight-indent-guides-mode)
+  :custom
+  (highlight-indent-guides-method 'character))
+
 (use-package treesit-auto
   :ensure t
   :config
   (global-treesit-auto-mode))
+
+(unless (package-installed-p 'treesit-fold)
+  (package-vc-install "https://github.com/emacs-tree-sitter/treesit-fold"))
+
+(use-package treesit-fold
+  :hook (prog-mode . treesit-fold-mode)
+  :config
+  (global-treesit-fold-indicators-mode))
 
 ; autocomplete
 (use-package company
@@ -59,29 +73,31 @@
 
 (use-package flycheck
   :ensure t
-  :hook (flycheck-error-list-mode . (lambda() (display-line-numbers-mode -1)))
+  :hook (flycheck-error-list-mode . (lambda () (display-line-numbers-mode -1)))
+  :custom
+  (flycheck-indication-mode nil)
+  (flycheck-highlighting-mode 'lines)
   :init
   (global-flycheck-mode)
+  :config
+  (custom-set-faces
+   '(flycheck-error   ((t (:underline (:style wave :color "#e06c75")))))
+   '(flycheck-warning ((t (:underline (:style wave :color "#e5c07b")))))
+   '(flycheck-info    ((t (:underline (:style wave :color "#61afef")))))))
 
-  (setq flycheck-indication-mode 'right-fringe)
-
-  (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
-  [ #b000000000000
-    #b000000000000
-    #b000000000100
-    #b000000001100
-    #b000000011100
-    #b000000111100
-    #b000001111100
-    #b000011111100
-    #b000011111100
-    #b000001111100
-    #b000000111100
-    #b000000011100
-    #b000000001100
-    #b000000000100
-    #b000000000000
-    #b000000000000 ] nil 12 'center))
+(use-package flycheck-posframe
+  :ensure t
+  :after flycheck
+  :hook (flycheck-mode . flycheck-posframe-mode)
+  :custom
+  (flycheck-posframe-warning-prefix "⚠ ")
+  (flycheck-posframe-error-prefix "✕ ")
+  (flycheck-posframe-info-prefix "ℹ ")
+  (flycheck-posframe-border-width 2)
+  :config
+  (custom-set-faces
+   '(flycheck-posframe-error-face ((t (:foreground "#e06c75"))))
+   '(flycheck-posframe-warning-face ((t (:foreground "#e5c07b"))))))
 
 (use-package yasnippet
   :ensure t
