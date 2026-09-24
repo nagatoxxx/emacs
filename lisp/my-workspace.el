@@ -104,6 +104,10 @@
   (vterm-max-scrollback 10000)
   (vterm-kill-buffer-on-exit t))  
 
+(use-package envrc
+  :ensure t
+  :hook (after-init . envrc-global-mode))
+
 (defun my/toggle-vterm ()
   "show or hide terminal"
   (interactive)
