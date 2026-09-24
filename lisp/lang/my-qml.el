@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (use-package qml-mode
   :ensure t
   :hook (qml-mode . eglot-ensure))

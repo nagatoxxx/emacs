@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (savehist-mode 1)
                  
 (setq enable-recursive-minibuffers t
@@ -8,9 +9,7 @@
 
 (use-package eglot
   :ensure nil
-  :general
-  (my-leader :keymaps 'eglot-mode-map
-    "rr" '(eglot-rename :wk "rename"))
+  :defer t
   :config
   (add-to-list 'eglot-ignored-server-capabilities
            :documentOnTypeFormattingProvider))
@@ -44,14 +43,6 @@
 
 (use-package consult
   :ensure t
-  :general
-  (my-leader
-    "cb" '(consult-buffer   :wk "buffers")
-    "ci" '(consult-imenu    :wk "imenu")
-    "cf" '(consult-find     :wk "find file")    ; если установлен fd: consult-fd
-    "cg" '(consult-ripgrep  :wk "grep")
-    "cl" '(consult-line     :wk "search in buffer")
-    "ct" '(consult-theme    :wk "theme"))
   :init
   (setq xref-show-xrefs-function       #'consult-xref
         xref-show-definitions-function #'consult-xref)
@@ -60,10 +51,6 @@
                 "\\`\\*Compile-Log\\*\\'" "\\`\\*Flycheck"
                 "\\`\\*EGLOT" "\\`\\*eldoc"))
     (add-to-list 'consult-buffer-filter re t))
-  ; (consult-customize
-  ;  consult-theme :preview-key '(:debounce 0.2 any)
-  ;  consult-ripgrep consult-find consult-xref
-  ;  :preview-key '(:debounce 0.4 any))
   (setq consult-narrow-key "<"))
 
 (use-package company
@@ -82,15 +69,21 @@
 (use-package flymake
   :ensure nil
   :hook (prog-mode . flymake-mode)
-  :general
-  (my-leader
-    "dd" '(consult-flymake                 :wk "jump to diagnostic")
-    "dl" '(flymake-show-buffer-diagnostics :wk "buffer diagnostics")
-    "dL" '(flymake-show-project-diagnostics :wk "project diagnostics"))
   :custom
   (flymake-show-diagnostics-at-end-of-line nil)
   (flymake-fringe-indicator-position nil)
   (flymake-no-changes-timeout 0.5))
+
+(use-package colorful-mode
+  :ensure t
+  :hook (prog-mode . colorful-mode)
+  :custom
+  (colorful-use-prefix t)
+  (colorful-only-strings 'only-prog)
+  (colorful-prefix-string "■")
+  :config
+  (add-to-list 'colorful-extra-color-keyword-functions
+               '(qml-mode . colorful-add-web-color-names)))
 
 (add-to-list 'load-path (expand-file-name "lang" (file-name-directory load-file-name)))
 

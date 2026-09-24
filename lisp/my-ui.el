@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (tooltip-mode -1) 
 
 (use-package nerd-icons
@@ -19,8 +20,12 @@
   :config
   (which-key-mode 1))
 
+(use-package hl-todo
+  :ensure t
+  :config
+  (global-hl-todo-mode 1))
+
 (defun my-mode-line-diagnostics ()
-  "Число ошибок и предупреждений flymake с иконками."
   (when (bound-and-true-p flymake-mode)
     (let ((errors 0) (warnings 0))
       (dolist (diag (flymake-diagnostics))

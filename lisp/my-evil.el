@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (use-package general
   :ensure t
   :demand t
@@ -61,15 +62,17 @@
 (use-package treemacs-evil
   :ensure t
   :after (treemacs evil))
+
+(use-package evil-goggles
+  :ensure t
+  :after (evil))
  
 (use-package avy
   :after evil
   :custom
   (avy-keys (string-to-list "asdghklqwertyuiopzxcvbnmfj;")) ; алфавит vim-easymotion
   (avy-background t)
-  (avy-all-windows nil)
-  :config
-  (my-leader "w" '(evil-avy-goto-word-0 :wk "go to word")))
+  (avy-all-windows nil))
 
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-defun  'disabled nil)
@@ -87,11 +90,5 @@
   (narrow-to-region beg end))
 
 (evil-ex-define-cmd "nar[row]" #'my-narrow-ex)
-
-(my-leader
-  "n"  '(:ignore t :wk "narrow")
-  "nn" '(my-narrow-dwim     :wk "narrow / widen")
-  "nf" '(narrow-to-defun    :wk "narrow to function")
-  "nw" '(widen              :wk "widen"))
 
 (provide 'my-evil)

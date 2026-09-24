@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 ; treemacs
 (use-package treemacs
   :ensure t
@@ -47,7 +48,18 @@
   (projectile-sort-order 'recently-active)
   :config
   (projectile-mode 1)
-  (my-leader "P" '(:keymap projectile-command-map :wk "project")))
+
+  (defun my-treemacs-projects-to-projectile (&rest _)
+    "Добавить проекты из всех воркспейсов treemacs в известные проекты projectile."
+    (require 'treemacs)
+    (treemacs-current-workspace)          
+    (dolist (ws (treemacs-workspaces))
+      (dolist (project (treemacs-workspace->projects ws))
+        (let ((path (treemacs-project->path project)))
+          (when (file-directory-p path)
+            (projectile-add-known-project (file-name-as-directory path)))))))
+
+  (advice-add 'projectile-switch-project :before #'my-treemacs-projects-to-projectile))
 
 ; popper
 (use-package popper
@@ -86,6 +98,7 @@
 (use-package vterm
   :ensure t
   :commands vterm
+  :hook (vterm-mode . (lambda () (setq-local global-hl-line-mode nil)))
   :custom
   (vterm-always-compile-module t)
   (vterm-max-scrollback 10000)
@@ -100,10 +113,4 @@
           (buf (pop-to-buffer buf))
           (t (vterm)))))           
 
-(my-leader
-  "mt" '(my/toggle-vterm :wk "toggle vterm")
-  "|"  '(evil-window-vsplit :wk "split right")
-  "_"  '(evil-window-split :wk "split below")
-  "q"  '(evil-quit         :wk "quit"))
- 
 (provide 'my-workspace)

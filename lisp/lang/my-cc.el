@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (defun my-cc-setup ()
   (setq c-basic-offset 4)
   (c-set-offset 'innamespace 0)

@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (setq-default scroll-conservatively 100000) 
 (setq-default scroll-margin 5)
 (setq-default scroll-preserve-screen-position t) 
