@@ -12,4 +12,9 @@
 (setq inhibit-startup-screen t
       frame-inhibit-implied-resize t)
 
+(if (featurep 'native-compile)
+    (if (not (native-comp-available-p))
+        (delq 'native-compile features)))
+(setq warning-suppress-types '((defvaralias) (lexical-binding)))
+
 (setenv "LSP_USE_PLISTS" "true")
