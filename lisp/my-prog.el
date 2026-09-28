@@ -87,6 +87,8 @@
 
 (add-to-list 'load-path (expand-file-name "lang" (file-name-directory load-file-name)))
 
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+
 (require 'lang/my-haskell)
 (require 'lang/my-cmake)
 (require 'lang/my-qml)

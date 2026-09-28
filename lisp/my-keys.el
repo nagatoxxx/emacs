@@ -5,9 +5,11 @@
   (find-file (locate-user-emacs-file "init.el")))
 
 (defun my-flymake-show-buffer-diagnostics ()
-  "show diagnostics list"
   (interactive)
-  (flymake-show-buffer-diagnostics (car (flymake-diagnostics (point)))))
+  (let ((diag (car (flymake-diagnostics (point)))))
+    (if (and diag (> (cdr (func-arity #'flymake-show-buffer-diagnostics)) 0))
+        (flymake-show-buffer-diagnostics diag)
+      (flymake-show-buffer-diagnostics))))
 
 (my-leader
   "SPC" '(projectile-find-file               :wk "find file in project")
