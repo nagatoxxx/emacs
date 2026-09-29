@@ -76,6 +76,7 @@
   "tt" '(consult-theme              :wk "theme")
   "tl" '(display-line-numbers-mode  :wk "line numbers")
   "tw" '(visual-line-mode           :wk "word wrap")
+  "tb" '(global-blamer-mode               :wk "blame current line")
 
   ;; narrowing
   "n"  '(:ignore t           :wk "narrow")

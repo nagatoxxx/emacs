@@ -22,10 +22,25 @@
   :hook (
          (dired-mode         . diff-hl-dired-mode))
   :custom
-  (diff-hl-draw-borders nil)             ; сплошные полосы без рамки
+  (diff-hl-draw-borders nil)
   :config
   (global-diff-hl-mode 1)
   (diff-hl-flydiff-mode 1)               ; обновлять полосы до сохранения файла
   )
+
+(use-package blamer
+  :ensure t
+  :defer t
+  :custom
+  (blamer-type 'visual)                  
+  (blamer-idle-time 0.5)                 
+  (blamer-min-offset 40)                 
+  (blamer-max-commit-message-length 50)
+  (blamer-show-avatar-p nil)             
+  (blamer-author-formatter   "%s | ")
+  (blamer-datetime-formatter "%s | ")
+  (blamer-commit-formatter   "%s")
+  :custom-face
+  (blamer-face ((t :inherit shadow :italic t :background unspecified))))
 
 (provide 'my-vc)
