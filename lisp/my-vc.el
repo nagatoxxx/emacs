@@ -11,7 +11,6 @@
   :ensure t
   :defer t
   :hook (
-         (magit-pre-refresh  . diff-hl-magit-pre-refresh)
          (magit-post-refresh . diff-hl-magit-post-refresh)
          (dired-mode         . diff-hl-dired-mode))
   :custom
