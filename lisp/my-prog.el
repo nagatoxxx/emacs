@@ -85,6 +85,24 @@
   (add-to-list 'colorful-extra-color-keyword-functions
                '(qml-mode . colorful-add-web-color-names)))
 
+(use-package markdown-mode
+  :ensure t
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'"       . markdown-mode))
+  :hook (markdown-mode . visual-line-mode)
+  :custom
+  (markdown-fontify-code-blocks-natively t)
+  (markdown-header-scaling t) 
+  (markdown-hide-urls t)         
+  (markdown-command "pandoc -f gfm"))               
+
+(use-package shr
+  :ensure nil
+  :custom
+  (shr-use-fonts nil)     
+  (shr-use-colors nil)    
+  (shr-max-width 90))     
+
 (add-to-list 'load-path (expand-file-name "lang" (file-name-directory load-file-name)))
 
 (add-hook 'prog-mode-hook #'hs-minor-mode)
